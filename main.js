@@ -20,7 +20,7 @@ circle.dblclick(function() {
 		circle.animate({r: 15}, duration)
 	});
 });
-Snap.load("file:///C:/Users/LittleWhyWhat/Desktop/WebProject/mobile_cloud_services.svg", function(f) {
+Snap.load("http://test-littlewhywhat.rhcloud.com/site/mobile_cloud_services.svg", function(f) {
 	g = f.select("g");
 	s.append(g);
 });
