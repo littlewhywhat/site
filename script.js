@@ -16,8 +16,8 @@ circle.mouseout(function() {
 circle.drag();
 circle.dblclick(function() {
 	var duration = 200;
-	circle.animate({r: 17}, 10, function() {
-		circle.animate({r: 15}, duration)
+	circle.animate({r: 110}, 10, function() {
+		circle.animate({r: 100}, duration)
 	});
 });
 Snap.load("http://test-littlewhywhat.rhcloud.com/site/mobile_cloud_services.svg", function(f) {
