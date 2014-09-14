@@ -1,6 +1,6 @@
 
 
-var s = Snap("#svg");
+var s = Snap("#scheme");
 var circle = s.circle(10,10,15);
 circle.mouseover(function() {
 	circle.attr({
