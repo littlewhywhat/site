@@ -1,13 +1,19 @@
 #scheme {
 	margin: auto;
 	display: block;
-	height: 1000px;
-	width: 700px;
+	
 }
 
 #main {
 	margin: auto;
 	display: block;
-	height: 500px;
-	width: 500px;
+	height: 402px;
+	width: 320px;
+}
+.container {
+	margin: auto;
+}
+.jumbotron {
+	display: block;
+	margin: auto;
 }
