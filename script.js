@@ -7,14 +7,16 @@ Snap.load("main.svg", function(f) {
 	var circles = s.selectAll("ellipse");
 	circles.attr({'pointer-events':'auto'});
 	circles.forEach(function(circle) {		
-		circle.hover(function() {
-			circle.attr({fill : 'violet'});
-		},
-		function() {
-			circle.attr({fill : 'white'});
-		});
+		circle.hover(
+			function() {
+				circle.attr({fill : 'violet'});
+			},
+			function() {
+				circle.attr({fill : 'white'});
+			});
 	},
 	circles);
+
 });
 
 
