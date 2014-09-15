@@ -1,7 +1,7 @@
 
 
 var s = Snap("#scheme");
-var circle = s.circle(100,100,100);
+var circle = s.circle(500,500,100);
 circle.mouseover(function() {
 	circle.attr({
 		fill:'#f00'
