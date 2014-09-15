@@ -9,17 +9,17 @@
 		
 		<g class="circle" fill="#000000" font-family="Comic Sans MS" font-weight="bold" text-anchor="middle" font-size="36px">
 			<ellipse cx="45" cy="135" rx="40" ry="40" fill="#ffffff" stroke="#3333ff" stroke-width="8" />
-			<text x="45" y="71">Hey</text>
+			<text x="45" y="71" visibility="hidden">Hey</text>
 		</g>
 		
 		<g class="circle" fill="#000000" font-family="Comic Sans MS" font-weight="bold" text-anchor="middle" font-size="36px">
 			<ellipse cx="275" cy="95" rx="40" ry="40" fill="#ffffff" stroke="#3333ff" stroke-width="8" />
-			<text x="275" y="41">Hey</text>
+			<text x="275" y="41" visibility="hidden">Hey</text>
 		</g>
 		
 		<g class="circle" fill="#000000" font-family="Comic Sans MS" font-weight="bold" text-anchor="middle" font-size="36px">
 			<ellipse cx="235" cy="305" rx="40" ry="40" fill="#ffffff" stroke="#3333ff" stroke-width="8" />
-			<text x="235" y="391">Hey</text>
+			<text x="235" y="391" visibility="hidden">Hey</text>
 		</g>
 	</g>
 </svg>

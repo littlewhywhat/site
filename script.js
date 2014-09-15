@@ -1,19 +1,22 @@
 var s = Snap("#main");
 Snap.load("main.svg", function(f) {
 	g = f.select("g");
-	f.selectAll("text").attr({visibility : 'hidden'});
 	s.append(g);
 	
-	var circles = s.selectAll("ellipse");
-	//circles.attr({'pointer-events':'auto'});
-	circles.forEach(function(circle) {		
-		circle.hover(
+	var circles = s.selectAll(".circle");
+	circles.forEach(function(circle) {	
+		var ellipse = circle.select("ellipse");	
+		var text = circle.select("text");
+		ellipse.hover(
 			function() {
-				circle.attr({fill : 'violet'});
+				ellipse.attr({fill : 'violet'});
+				text.attr({visibility : 'visible'});
 			},
 			function() {
-				circle.attr({fill : 'white'});
+				ellipse.attr({fill : 'white'});
+				text.attr({visibility : 'hidden'});
 			});
+
 	},
 	circles);
 
