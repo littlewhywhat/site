@@ -6,7 +6,7 @@ Snap.load("main.svg", function(f) {
 });
 
 $("circle").hover(function() {
-	$(this).closest("text").attr({visibility : 'display'});
+	$(this).closest("text").toggle();
 });
 
 
