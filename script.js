@@ -5,7 +5,7 @@ Snap.load("main.svg", function(f) {
 	s.append(g);
 	
 	var circles = s.selectAll("ellipse");
-	circles.attr({'pointer-events':'auto'});
+	//circles.attr({'pointer-events':'auto'});
 	circles.forEach(function(circle) {		
 		circle.hover(
 			function() {

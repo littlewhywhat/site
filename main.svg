@@ -8,17 +8,17 @@
 		<path d="M 195 305 L 83 305 Q 73 305 73 295 L 73 163" fill="none" stroke="#0000cc" stroke-width="4" stroke-miterlimit="10" pointer-events="none"/>
 		
 		<g class="circle" fill="#000000" font-family="Comic Sans MS" font-weight="bold" text-anchor="middle" font-size="36px">
-			<ellipse cx="45" cy="135" rx="40" ry="40" fill="#ffffff" stroke="#3333ff" stroke-width="8" pointer-events="none"/>
+			<ellipse cx="45" cy="135" rx="40" ry="40" fill="#ffffff" stroke="#3333ff" stroke-width="8" />
 			<text x="45" y="71">Hey</text>
 		</g>
 		
 		<g class="circle" fill="#000000" font-family="Comic Sans MS" font-weight="bold" text-anchor="middle" font-size="36px">
-			<ellipse cx="275" cy="95" rx="40" ry="40" fill="#ffffff" stroke="#3333ff" stroke-width="8" pointer-events="none"/>
+			<ellipse cx="275" cy="95" rx="40" ry="40" fill="#ffffff" stroke="#3333ff" stroke-width="8" />
 			<text x="275" y="41">Hey</text>
 		</g>
 		
 		<g class="circle" fill="#000000" font-family="Comic Sans MS" font-weight="bold" text-anchor="middle" font-size="36px">
-			<ellipse cx="235" cy="305" rx="40" ry="40" fill="#ffffff" stroke="#3333ff" stroke-width="8" pointer-events="none"/>
+			<ellipse cx="235" cy="305" rx="40" ry="40" fill="#ffffff" stroke="#3333ff" stroke-width="8" />
 			<text x="235" y="391">Hey</text>
 		</g>
 	</g>
