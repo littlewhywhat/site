@@ -1,21 +1,24 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="320px" height="402px" version="1.1"><defs/>
 	<g transform="translate(0.5,0.5)">
-		<ellipse cx="45" cy="135" rx="40" ry="40" fill="#ffffff" stroke="#3333ff" stroke-width="8" pointer-events="none"/>
-		<ellipse cx="275" cy="95" rx="40" ry="40" fill="#ffffff" stroke="#3333ff" stroke-width="8" pointer-events="none"/>
-		<ellipse cx="235" cy="305" rx="40" ry="40" fill="#ffffff" stroke="#3333ff" stroke-width="8" pointer-events="none"/>
+		
+		
+		
 		<path d="M 85 135 L 150 135 Q 160 135 160 125 L 160 105 Q 160 95 170 95 L 235 95" fill="none" stroke="#0000cc" stroke-width="4" stroke-miterlimit="10" pointer-events="none"/>
 		<path d="M 275 135 L 275 190 Q 275 200 265 200 L 245 200 Q 235 200 235 210 L 235 265" fill="none" stroke="#0000cc" stroke-width="4" stroke-miterlimit="10" pointer-events="none"/>
 		<path d="M 195 305 L 83 305 Q 73 305 73 295 L 73 163" fill="none" stroke="#0000cc" stroke-width="4" stroke-miterlimit="10" pointer-events="none"/>
-		<rect x="5" y="35" width="80" height="40" fill="none" stroke="none" pointer-events="none"/>
-		<g fill="#000000" font-family="Comic Sans MS" font-weight="bold" text-anchor="middle" font-size="36px">
+		
+		<g class="circle" fill="#000000" font-family="Comic Sans MS" font-weight="bold" text-anchor="middle" font-size="36px">
+			<ellipse cx="45" cy="135" rx="40" ry="40" fill="#ffffff" stroke="#3333ff" stroke-width="8" pointer-events="none"/>
 			<text x="45" y="71">Hey</text>
 		</g>
-		<rect x="235" y="5" width="80" height="40" fill="none" stroke="none" pointer-events="none"/>
-		<g fill="#000000" font-family="Comic Sans MS" font-weight="bold" text-anchor="middle" font-size="36px">
+		
+		<g class="circle" fill="#000000" font-family="Comic Sans MS" font-weight="bold" text-anchor="middle" font-size="36px">
+			<ellipse cx="275" cy="95" rx="40" ry="40" fill="#ffffff" stroke="#3333ff" stroke-width="8" pointer-events="none"/>
 			<text x="275" y="41">Hey</text>
 		</g>
-		<rect x="195" y="355" width="80" height="40" fill="none" stroke="none" pointer-events="none"/>
-		<g fill="#000000" font-family="Comic Sans MS" font-weight="bold" text-anchor="middle" font-size="36px">
+		
+		<g class="circle" fill="#000000" font-family="Comic Sans MS" font-weight="bold" text-anchor="middle" font-size="36px">
+			<ellipse cx="235" cy="305" rx="40" ry="40" fill="#ffffff" stroke="#3333ff" stroke-width="8" pointer-events="none"/>
 			<text x="235" y="391">Hey</text>
 		</g>
 	</g>
