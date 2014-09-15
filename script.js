@@ -11,7 +11,7 @@ Snap.load("main.svg", function(f) {
 		function() {
 			$(this).closest("text").toggle();
 		});
-	});
+	};
 	s.append(g);
 	
 });
