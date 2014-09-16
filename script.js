@@ -7,19 +7,14 @@ Snap.load(loadUrl, function(f) {
 	g = f.select(mainParentTag);
 	s.append(g);
 
-	var layers = g.selectAll(".layer");
-	layers.forEach( function(layer) {
-		var gElement = new Element(layer);
-		gElement.hover(
+	var gElement = new Element(g);
+	gElement.hover(
 		function() {
 			gElement.scale(1.2, 400);
 		},
 		function() {
 			gElement.scale(1.0, 400);
 		});
-	},
-	layers);
-	
 	initNodes(s);
 });
 
