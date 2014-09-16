@@ -1,9 +1,12 @@
-var s = Snap("#main");
-Snap.load("main.svg", function(f) {
-	g = f.select("g");
+var snapName = "#main";
+var mainParentTag = "g";
+var loadUrl = "main.svg";
+var s = Snap(snapName);
+Snap.load(loadUrl, function(f) {
 	
+	g = f.select(mainParentTag);
 	s.append(g);
-	
+
 	var gElement = new Element(g);
 	gElement.hover(
 		function() {
@@ -12,7 +15,6 @@ Snap.load("main.svg", function(f) {
 		function() {
 			gElement.scale(1.0, 400);
 		});
-
 	initNodes(s);
 });
 
