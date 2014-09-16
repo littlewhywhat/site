@@ -13,26 +13,7 @@ Snap.load("main.svg", function(f) {
 			gElement.scale(1.0, 400);
 		});
 
-	var circles = s.selectAll(".circle");
-	circles.forEach(function(circle) {	
-		var ellipse = circle.select("ellipse");	
-		var text = circle.select("text");
-		ellipse.hover(
-			function() {
-				ellipse.attr({fill : 'violet'});
-				//ellipse.attr({rx : 50});
-				//ellipse.attr({ry : 50});
-				text.attr({visibility : 'visible'});
-			},
-			function() {
-				ellipse.attr({fill : 'white'});
-				//ellipse.attr({rx : 40});
-				//ellipse.attr({ry : 40});
-				text.attr({visibility : 'hidden'});
-		});
-	},
-	circles);
-
+	initNodes(s);
 });
 
 function Element(element) {
@@ -47,4 +28,22 @@ function Element(element) {
 	this.hover = function(fin, fout) {
 		element.hover(fin, fout);
 	}
+}
+
+function initNodes(s) {
+	var nodes = s.selectAll(".node");
+	nodes.forEach(function(node) {	
+		var ellipse = node.select("ellipse");	
+		var text = node.select("text");
+		ellipse.hover(
+			function() {
+				ellipse.attr({fill : 'violet'});
+				text.attr({visibility : 'visible'});
+			},
+			function() {
+				ellipse.attr({fill : 'white'});
+				text.attr({visibility : 'hidden'});
+		});
+	},
+	nodes);
 }
