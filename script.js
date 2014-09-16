@@ -1,6 +1,6 @@
 var snapName = "#main";
 var mainParentTag = "g";
-var loadUrl = "main.svg";
+var loadUrl = "map.svg";
 var s = Snap(snapName);
 Snap.load(loadUrl, function(f) {
 	
