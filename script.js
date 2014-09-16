@@ -3,16 +3,16 @@ Snap.load("main.svg", function(f) {
 	g = f.select("g");
 	
 	s.append(g);
-	var cx = g.getBBox().cx;
-	var cy = g.getBBox().cy;
-	g.hover(
+	
+	var gElement = new Element(g);
+	gElement.hover(
 		function() {
-			g.animate({transform : "scale(1.2) " +
-				"translate( -"+cx*0.2 +", -"+cy*0.2 +")" }, 400);
+			gElement.scale(1.2, 400);
 		},
 		function() {
-			g.animate({transform : "scale(1.0) translate(0.5, 0.5)" }, 400)
-	});
+			gElement.scale(1.0, 400);
+		});
+
 	var circles = s.selectAll(".circle");
 	circles.forEach(function(circle) {	
 		var ellipse = circle.select("ellipse");	
@@ -34,3 +34,17 @@ Snap.load("main.svg", function(f) {
 	circles);
 
 });
+
+function Element(element) {
+	this.svgEl = element;
+	this.bbox = this.svgEl.getBBox();
+	this.scale = function (scale, duration) {
+		var translateX = (1 - scale) * this.bbox.cx;
+		var translateY = (1 - scale) * this.bbox.cy;
+		element.animate({transform : "scale("+ scale +") " +
+				"translate( " + translateX + ", " + translateY + ")" }, duration)
+	}
+	this.hover = function(fin, fout) {
+		element.hover(fin, fout);
+	}
+}
