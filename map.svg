@@ -1,32 +1,43 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1071px" height="545px" version="1.1">
 	<defs/>
 	<g transform="translate(0.5,0.5)" fill="#000000" font-family="Comic Sans MS" font-weight="bold" text-anchor="middle" font-size="36px">
-		<g id="mi">
+		<g id="mi" class="layer">
 			<path d="M 343 185 L 398 185 Q 408 185 408 175 L 408 105 Q 408 95 418 95 L 472 95" fill="none" stroke="#0000ff" stroke-width="4" stroke-miterlimit="10" />
 			<path d="M 552 95 L 622 95 Q 632 95 632 105 L 632 195 Q 632 205 642 205 L 712 205" fill="none" stroke="#0000ff" stroke-width="4" stroke-miterlimit="10" />
 			<path d="M 512 135 L 512 160 Q 512 170 502 170 L 482 170 Q 472 170 472 180 L 472 205" fill="none" stroke="#0000ff" stroke-width="4" stroke-miterlimit="10" />
 			<path d="M 472 245 L 472 250 Q 472 255 471 259 L 471 263" fill="none" stroke="#0000ff" stroke-width="4" stroke-miterlimit="10" />
 			<ellipse cx="512" cy="95" rx="40" ry="40" fill="#3399ff" stroke="#0000ff" stroke-width="8" />
 			<text x="513" y="40">Me</text>
-			
-			<g id="experience">				
-				<ellipse cx="293" cy="185" rx="50" ry="50" fill="#ffffff" stroke="#0000ff" stroke-width="8" />
-				<ellipse cx="293" cy="185" rx="40" ry="40" fill="#cda2be" stroke="#b5739d" stroke-width="8" />
-				<path d="M 85 247 L 159 247 Q 169 247 169 237 L 169 195 Q 169 185 179 185 L 253 185" fill="none" stroke="#b5739d" stroke-width="4" stroke-miterlimit="10" />
-				<path d="M 293 225 L 293 254 Q 293 264 283 264 L 211 264 Q 201 264 201 274 L 201 302" fill="none" stroke="#b5739d" stroke-width="4" stroke-miterlimit="10" />
-				<path d="M 201 340 L 201 345 Q 201 350 200 354 L 200 357" fill="none" stroke="#b5739d" stroke-width="4" stroke-miterlimit="10" />
-				<text x="276" y="119">Experience</text>
-				<g id="job">
-					<ellipse cx="45" cy="247" rx="40" ry="40" fill="#ffffff" stroke="#b5739d" stroke-width="8" />
-					<text x="50" y="190">Job</text>
-				</g>			
-				<g id="projects">
-					<ellipse cx="200" cy="397" rx="40" ry="40" fill="#ffffff" stroke="#b5739d" stroke-width="8" />
-					<text x="201" y="337">Projects</text>
-				</g>
+			<!-- Experience circle !-->
+			<ellipse cx="293" cy="185" rx="50" ry="50" fill="#ffffff" stroke="#0000ff" stroke-width="8" />
+			<!-- Education circle !-->
+			<ellipse cx="471" cy="313" rx="50" ry="50" fill="#ffffff" stroke="#0000ff" stroke-width="8" />
+			<!-- Interests circle !-->
+			<ellipse cx="762" cy="205" rx="50" ry="50" fill="#ffffff" stroke="#0000ff" stroke-width="8" />
+		</g>
+		<g id="experience" class="layer">				
+				
+			<ellipse cx="293" cy="185" rx="40" ry="40" fill="#cda2be" stroke="#b5739d" stroke-width="8" />
+			<path d="M 85 247 L 159 247 Q 169 247 169 237 L 169 195 Q 169 185 179 185 L 253 185" fill="none" stroke="#b5739d" stroke-width="4" stroke-miterlimit="10" />
+			<path d="M 293 225 L 293 254 Q 293 264 283 264 L 211 264 Q 201 264 201 274 L 201 302" fill="none" stroke="#b5739d" stroke-width="4" stroke-miterlimit="10" />
+			<path d="M 201 340 L 201 345 Q 201 350 200 354 L 200 357" fill="none" stroke="#b5739d" stroke-width="4" stroke-miterlimit="10" />
+			<text x="276" y="119">Experience</text>
+				
+			<ellipse cx="45" cy="247" rx="40" ry="40" fill="#ffffff" stroke="#b5739d" stroke-width="8" />
+			<text x="50" y="190">Job</text>
+			<g id="job" class="layer">
+					
+			</g>			
+				
+			<ellipse cx="200" cy="397" rx="40" ry="40" fill="#ffffff" stroke="#b5739d" stroke-width="8" />
+			<text x="201" y="337">Projects</text>
+			<g id="projects" class="layer">
+					
 			</g>
-			<g id="education">
-				<ellipse cx="471" cy="313" rx="50" ry="50" fill="#ffffff" stroke="#0000ff" stroke-width="8" />
+		</g>
+			
+			<g id="education" class="layer">
+				
 				<ellipse cx="352" cy="499" rx="40" ry="40" fill="#ffffff" stroke="#ffd966" stroke-width="8" /><rect x="260" y="408" width="185" height="40" fill="none" stroke="none" />
 				<path d="M 392 499 L 461 499 Q 471 499 471 489 L 471 354" fill="none" stroke="#ffd966" stroke-width="4" stroke-miterlimit="10" />
 				<path d="M 499 343 L 551 343 Q 561 343 561 353 L 561 451 Q 561 461 571 461 L 611 461" fill="none" stroke="#ffd966" stroke-width="4" stroke-miterlimit="10" />
@@ -43,8 +54,8 @@
 			</g>
 			
 			
-			<g id="interests">
-				<ellipse cx="762" cy="205" rx="50" ry="50" fill="#ffffff" stroke="#0000ff" stroke-width="8" />
+			<g id="interests" class="layer">
+				
 				<ellipse cx="762" cy="205" rx="40" ry="40" fill="#00ee66" stroke="#00cc66" stroke-width="8" />
 				<path d="M 802 205 L 866 205 Q 876 205 876 215 L 876 271 Q 876 281 886 281 L 949 281" fill="none" stroke="#00cc66" stroke-width="4" stroke-miterlimit="10" />
 				<path d="M 842 370 L 842 375 Q 842 380 842 384 L 842 387" fill="none" stroke="#00cc66" stroke-width="4" stroke-miterlimit="10" />
