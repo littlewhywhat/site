@@ -34,7 +34,7 @@ function attachHandlers(elements) {
 		element.click( function() {
 			animScale(element, 1.2, 1000);
 		}, element);
-		opacity(element, 0.25, 400);
+		animOpacity(element, 0.25, 400);
 		element.hover(function() {
 			animOpacity(element, 2.0, 600);
 		}, function() {
