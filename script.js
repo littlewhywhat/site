@@ -15,7 +15,7 @@ Snap.load(loadUrl, function(f) {
 	attachHandlers(mainParent.selectAll('.content'))
 });
 
-$(".jumbotron").animate({
+$(".popup").animate({
 	top: '500px'
 	}, 500);
 
