@@ -42,6 +42,7 @@ function Site() {
 }
 
 function Popup() {
+	var instance = this;
 	var animDuration = 1000;
 	var id = '#popup';
 	var element = $(id);
@@ -65,6 +66,11 @@ function Popup() {
 			hide
 		);
 	}
+
+	element.click(function() {
+		instance.animHide();
+		recoverSite();
+	});
 }
 
 function attachHandlers(elements) {
@@ -98,4 +104,13 @@ function animScale(element, scale, duration) {
 	site.root.animate({
 		transform: matrix.toTransformString()
 	}, duration, mina.bounce);
+}
+
+function recoverSite() {
+	var matrix = new Snap.Matrix();
+	matrix.translate(0, 0);
+	matrix.scale(1);
+	site.root.animate({
+		transform: matrix.toTransformString()
+	}, 1000, mina.bounce);
 }
