@@ -5,17 +5,25 @@ var s = Snap(snapName);
 var mainParent,
 	scalePositionX,
 	scalePositionY;
-Snap.load(loadUrl, function(f) {
-	
+Snap.load(loadUrl, function(f) {	
 	mainParent = f.select(mainParentTag);
-	
+
 	s.append(mainParent);
-	
-	recordScalePosition(mainParent);
+
+	setViewBoxBy(mainParent);
+	setScalePosition(mainParent);
 	attachHandlers(mainParent.selectAll('.content'))
 });
 
-function recordScalePosition(mainParent) {
+function setViewBoxBy(element) {
+	var bbox = mainParent.getBBox();
+	var svg = document.getElementById('main');
+	svg.setAttribute('viewBox', '0 0 ' 
+		+ bbox.w + ' ' 
+		+ bbox.h + ' ');
+}
+
+function setScalePosition(mainParent) {
 	var bbox = mainParent.getBBox();
 	scalePositionX = bbox.w / 4;
 	scalePositionY = bbox.h / 2;
@@ -24,22 +32,22 @@ function recordScalePosition(mainParent) {
 function attachHandlers(elements) {
 	elements.forEach(function(element) {
 		element.click( function() {
-			scale(element, 1.2, 1000);
+			animScale(element, 1.2, 1000);
 		}, element);
 		opacity(element, 0.25, 400);
 		element.hover(function() {
-			opacity(element, 2.0, 600);
+			animOpacity(element, 2.0, 600);
 		}, function() {
-			opacity(element, 0.25, 600);
+			animOpacity(element, 0.25, 600);
 		});
 	});
 }
 
-function opacity(element, opacity, duration) {
+function animOpacity(element, opacity, duration) {
 	element.animate({'opacity': opacity}, duration)
 }
 
-function scale(element, scale, duration) {
+function animScale(element, scale, duration) {
 	var bbox = element.getBBox();
 	var x = bbox.cx;
 	var y = bbox.cy;
@@ -47,6 +55,7 @@ function scale(element, scale, duration) {
 	var translateY =  (scalePositionY - y);
 	var matrix = new Snap.Matrix();
 	matrix.translate(translateX, translateY);
+	matrix.scale(scale, scale, x, y);
 	mainParent.animate({
 		transform: matrix.toTransformString()
 	}, duration, mina.bounce);
