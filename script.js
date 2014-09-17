@@ -15,6 +15,10 @@ Snap.load(loadUrl, function(f) {
 	attachHandlers(mainParent.selectAll('.content'))
 });
 
+$(".jumbotron").animate({
+	top: '500px'
+	}, 500);
+
 function setViewBoxBy(element) {
 	var bbox = mainParent.getBBox();
 	var svg = document.getElementById('main');
@@ -25,7 +29,7 @@ function setViewBoxBy(element) {
 
 function setScalePosition(mainParent) {
 	var bbox = mainParent.getBBox();
-	scalePositionX = bbox.w / 4;
+	scalePositionX = bbox.w * 0.375;
 	scalePositionY = bbox.h / 2;
 }
 
