@@ -6,8 +6,8 @@ svg {
 	cursor: pointer;
 }
 
-.popup {
-	margin-top: -500px;
+#popup {
+	display: none;
 	position: absolute;
 	right: 0;
 	width: 25%;
@@ -17,7 +17,7 @@ svg {
 	border-radius: 10px;
 	padding: 20px;
 }
-.popup h1 {
+#popup h1 {
 	font-family: 'Comic Sans MS';
 	text-align: center;
 	font-size: 3em;

@@ -1,42 +1,77 @@
-var snapName = "#main";
-var mainParentTag = "g";
-var loadUrl = "map.svg";
-var s = Snap(snapName);
-var mainParent,
-	scalePositionX,
-	scalePositionY;
-Snap.load(loadUrl, function(f) {	
-	mainParent = f.select(mainParentTag);
+var svgId = "main";
+var rootSelector = "g";
+var mapUrl = "map.svg";
 
-	s.append(mainParent);
+var site = new Site();
+site.init(svgId, mapUrl, rootSelector);
 
-	setViewBoxBy(mainParent);
-	setScalePosition(mainParent);
-	attachHandlers(mainParent.selectAll('.content'))
-});
+function Site() {
+	this.popup = new Popup();
+	this.snap;
+	this.root;
+	this.svg;
+	this.scalePositionX;
+	this.scalePositionY;
 
-$(".popup").animate({
-	top: '500px'
-	}, 500);
+	this.init = function(svgId, mapUrl, rootSelector) {
+		this.svg = document.getElementById(svgId);
+		this.snap = Snap(this.svg);
+		Snap.load(mapUrl, function(data) {	
+			this.root = data.select(rootSelector);
+			this.snap.append(this.root);
 
-function setViewBoxBy(element) {
-	var bbox = mainParent.getBBox();
-	var svg = document.getElementById('main');
-	svg.setAttribute('viewBox', '0 0 ' 
+			this.setViewBox();
+			this.setScalePosition();
+
+			attachHandlers(this.root.selectAll('.content'));
+		}, this);
+	}
+	this.setViewBox = function() {
+		var bbox = this.root.getBBox();
+		this.svg.setAttribute('viewBox', '0 0 ' 
 		+ bbox.w + ' ' 
 		+ bbox.h + ' ');
+	}
+	this.setScalePosition = function() {
+		var percentX = 0.375;
+		var percentY = 0.5;
+		var bbox = this.root.getBBox();
+		this.scalePositionX = bbox.w * percentX;
+		this.scalePositionY = bbox.h * percentY;
+	}
 }
 
-function setScalePosition(mainParent) {
-	var bbox = mainParent.getBBox();
-	scalePositionX = bbox.w * 0.375;
-	scalePositionY = bbox.h / 2;
+function Popup() {
+	var animDuration = 1000;
+	var id = '#popup';
+	var element = $(id);
+	var way = $(document).height();
+	var hide = function() {
+		element.hide();
+	}
+	element.css({'margin-top': -way});
+	
+	this.animShow = function() {	
+		element.show();	
+		element.animate({
+			top : way},
+			animDuration
+		);
+	}
+	this.animHide = function() {
+		element.animate({
+			top : -way },
+			animDuration,
+			hide
+		);
+	}
 }
 
 function attachHandlers(elements) {
 	elements.forEach(function(element) {
 		element.click( function() {
 			animScale(element, 1.2, 1000);
+			site.popup.animShow();
 		}, element);
 		animOpacity(element, 0.25, 400);
 		element.hover(function() {
@@ -55,12 +90,12 @@ function animScale(element, scale, duration) {
 	var bbox = element.getBBox();
 	var x = bbox.cx;
 	var y = bbox.cy;
-	var translateX =  (scalePositionX - x);
-	var translateY =  (scalePositionY - y);
+	var translateX =  (site.scalePositionX - x);
+	var translateY =  (site.scalePositionY - y);
 	var matrix = new Snap.Matrix();
 	matrix.translate(translateX, translateY);
 	matrix.scale(scale, scale, x, y);
-	mainParent.animate({
+	site.root.animate({
 		transform: matrix.toTransformString()
 	}, duration, mina.bounce);
 }
