@@ -24,11 +24,11 @@ function Site() {
 	this.popup = new Popup(this);
 	function setActive(layer) {
 		if (activeLayer) {
-			activeLayer.hover();
+			activeLayer.activate();
 			activeLayer.unfocus();
 		}
 		activeLayer = layer;
-		activeLayer.unhover();
+		activeLayer.unactivate();
 	}
 	function setViewBox() {
 		var height = parseInt(snapMap.attr('height'));
@@ -96,7 +96,7 @@ function Popup(site) {
 	var ANIM_DURATION = 1000;
 	var $element = $('#popup');
 	
-	var isOpened = function() {
+	function isOpened() {
 		return $element.is(':visible');
 	}
 
@@ -126,15 +126,32 @@ function Layer(site, snapElement) {
 	this.cy;
 	this.color = snapElement.select('ellipse').attr('fill');
 	
-	var setCenter = function() {
+	function setCenter() {
 		var bbox = snapElement.getBBox();
 		instance.cx = bbox.cx;
 		instance.cy = bbox.cy;
 	}
-	var animOpacity = function(opacity) {
+	function animOpacity(opacity) {
 		snapElement.animate({'opacity': opacity}, ANIM_DURATION);
 	}
 	
+	function clickCallback(){
+		site.focus(instance);
+		site.popup.animShow();
+	}
+	function hover() {
+		snapElement.hover(instance.focus, instance.unfocus);
+	}
+	function unhover() {
+		snapElement.unhover(instance.focus, instance.unfocus);
+	}
+	function click() {
+		snapElement.click(clickCallback);
+	}
+	function unclick() {
+		snapElement.unclick(clickCallback);
+	}
+
 	setCenter(snapElement);
 
 	this.focus = function() {
@@ -143,17 +160,14 @@ function Layer(site, snapElement) {
 	this.unfocus = function() {
 		animOpacity(UNFOCUS_OPACITY);
 	}
-	this.hover = function() {
-		snapElement.hover(instance.focus, instance.unfocus);
+	this.activate = function() {
+		hover();
+		click();
 	}
-	this.unhover = function() {
-		snapElement.unhover(instance.focus, instance.unfocus);
+	this.unactivate = function() {
+		unhover();
+		unclick();
 	}
 
-	snapElement.click(function(){
-		site.focus(instance);
-		site.popup.animShow();
-	});
-	
-	this.hover();
+	this.activate();
 }
