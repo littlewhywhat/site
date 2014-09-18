@@ -68,6 +68,8 @@ function Site() {
 	this.focus = function(layer) {
 		focus(layer.cx, layer.cy);
 		setActive(layer);
+		instance.popup.setColor(layer.color);
+		
 	}
 	this.unfocus = function() {
 		var matrix = new Snap.Matrix();
@@ -106,7 +108,9 @@ function Popup(site) {
 		if (isOpened())
 			$element.slideToggle(ANIM_DURATION);
 	}
-
+	this.setColor = function(color) {
+		$element.css( {'background-color': color });
+	}
 	$element.click(function() {
 		instance.animHide();
 		site.unfocus();
@@ -120,6 +124,8 @@ function Layer(site, snapElement) {
 	var UNFOCUS_OPACITY = 0.25;
 	this.cx;
 	this.cy;
+	this.color = snapElement.select('ellipse').attr('fill');
+	
 	var setCenter = function() {
 		var bbox = snapElement.getBBox();
 		instance.cx = bbox.cx;
