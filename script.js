@@ -1,108 +1,139 @@
-var svgId = "main";
-var rootSelector = "g";
-var mapUrl = "map.svg";
+$(document).ready(new Main().main);
 
-var site = new Site();
-site.init(svgId, mapUrl, rootSelector);
+function Main() {
+	this.main = function() {
+		var svgId = "main";
+		var mapSelector = "g";
+		var mapUrl = "map.svg";
+		var site = new Site();
+		site.init(svgId, mapUrl, mapSelector);
+	}
+}
 
 function Site() {
 	var instance = this;
+	var FOCUS_SCALE = 1.2;
+	var ANIM_DURATION = 1000;
 	var snap;
-	var svg;
-	var scaleFocus = 1.2;
-	var focusDuration = 1000;
-	var scalePositionX;
-	var scalePositionY;
+	var svgElement;
+	var xFocus;
+	var yFocus;
+	var snapMap;
 
-	this.popup = new Popup();
-	this.root;
+	this.popup = new Popup(this);
 
 	function setViewBox() {
-		var height = parseInt(instance.root.attr('height'));
-		var width = parseInt(instance.root.attr('width'));
-		svg.setAttribute('viewBox', '0 0 ' 
+		var height = parseInt(snapMap.attr('height'));
+		var width = parseInt(snapMap.attr('width'));
+		svgElement.setAttribute('viewBox', '0 0 ' 
 		+ width + ' ' 
 		+ height + ' ');
 	}
-	function setScalePosition() {
-		var percentX = 0.375;
-		var percentY = 0.5;
-		var height = parseInt(instance.root.attr('height'));
-		var width = parseInt(instance.root.attr('width'));
-		scalePositionX = width * percentX;
-		scalePositionY = height * percentY;
+	function setFocusCoords() {
+		var relX = 0.375;
+		var relY = 0.5;
+		var height = parseInt(snapMap.attr('height'));
+		var width = parseInt(snapMap.attr('width'));
+		xFocus = width * relX;
+		yFocus = height * relY;
+	}
+	function createLayers() {
+		var snapElements = snapMap.selectAll('.content');
+		snapElements.forEach(function(snapElement) {
+			var layer = new Layer(instance, snapElement);
+			layer.unfocus();
+		});
+	}
+	function animTransform(matrix) {
+		snapMap.animate({
+			transform: matrix.toTransformString()
+		}, ANIM_DURATION, mina.bounce);
 	}
 	this.focus = function(x,y) {
-		var translateX =  (scalePositionX - x);
-		var translateY =  (scalePositionY - y);
+		var translateX =  (xFocus - x);
+		var translateY =  (yFocus - y);
 		var matrix = new Snap.Matrix();
 		matrix.translate(translateX, translateY);
-		matrix.scale(scaleFocus, scaleFocus, x, y);
-		instance.root.animate({
-			transform: matrix.toTransformString()
-		}, focusDuration, mina.bounce);
+		matrix.scale(FOCUS_SCALE, FOCUS_SCALE, x, y);
+		animTransform(matrix);
 	}
 	this.unfocus = function() {
 		var matrix = new Snap.Matrix();
-		instance.root.animate({
-			transform: matrix.toTransformString()
-		}, focusDuration, mina.bounce);
+		animTransform(matrix);
 	}
-	this.init = function(svgId, mapUrl, rootSelector) {
-		svg = document.getElementById(svgId);
-		snap = Snap(svg);
+	this.init = function(svgId, mapUrl, mapSelector) {
+		svgElement = document.getElementById(svgId);
+		snap = Snap(svgElement);
 		Snap.load(mapUrl, function(data) {	
-			this.root = data.select(rootSelector);
-			snap.append(this.root);
+			snapMap = data.select(mapSelector);
+			snap.append(snapMap);
 
 			setViewBox();
-			setScalePosition();
+			setFocusCoords();
 
-			attachHandlers(this.root.selectAll('.content'));
-		}, this);
+			createLayers();
+		});
 	}
 	
 }
 
-function Popup() {
+function Popup(site) {
 	var instance = this;
-	var animDuration = 1000;
-	var id = '#popup';
-	var element = $(id);
+	var ANIM_DURATION = 1000;
+	var $element = $('#popup');
 	
-	this.animShow = function() {
-		if (!element.is(':visible'))
-			element.slideToggle(animDuration);
-	}
-	this.animHide = function() {
-		if (element.is(':visible'))
-			element.slideToggle(animDuration);
+	var isOpened = function() {
+		return $element.is(':visible');
 	}
 
-	element.click(function() {
+	this.animShow = function() {
+		if (!isOpened())
+			$element.slideToggle(ANIM_DURATION);
+	}
+	this.animHide = function() {
+		if (isOpened())
+			$element.slideToggle(ANIM_DURATION);
+	}
+
+	$element.click(function() {
 		instance.animHide();
 		site.unfocus();
 	});
 }
 
-function attachHandlers(elements) {
-	elements.forEach(function(element) {
-		element.click( function() {
-			var bbox = element.getBBox();
-			var x = bbox.cx;
-			var y = bbox.cy;
-			site.focus(x,y);
-			site.popup.animShow();
-		}, element);
-		animOpacity(element, 0.25, 400);
-		element.hover(function() {
-			animOpacity(element, 2.0, 600);
-		}, function() {
-			animOpacity(element, 0.25, 600);
-		});
-	});
-}
+function Layer(site, snapElement) {
+	var instance = this;
+	var ANIM_DURATION = 1000;
+	var FOCUS_OPACITY = 2.0;
+	var UNFOCUS_OPACITY = 0.25;
+	var cx;
+	var cy;
+	var setCenter = function() {
+		var bbox = snapElement.getBBox();
+		cx = bbox.cx;
+		cy = bbox.cy;
+	}
+	var animOpacity = function(opacity) {
+		snapElement.animate({'opacity': opacity}, ANIM_DURATION);
+	}
+	
+	setCenter(snapElement);
 
-function animOpacity(element, opacity, duration) {
-	element.animate({'opacity': opacity}, duration)
+	this.focus = function() {
+		animOpacity(FOCUS_OPACITY);
+	}
+	this.unfocus = function() {
+		animOpacity(UNFOCUS_OPACITY);
+	}
+
+	snapElement.click(function(){
+		site.focus(cx,cy);
+		site.popup.animShow();
+	});
+	
+	snapElement.hover(function(){
+			instance.focus();
+		}, function() {
+			instance.unfocus();
+	});
 }
