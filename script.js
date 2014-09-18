@@ -66,7 +66,7 @@ function Site() {
 		focus(layer.cx, layer.cy);
 		setActive(layer);
 		instance.popup.setColor(layer.color);
-		
+		instance.popup.loadDescription(layer.url());
 	}
 	this.unfocus = function() {
 		var matrix = new Snap.Matrix();
@@ -108,6 +108,11 @@ function Popup(site) {
 	this.setColor = function(color) {
 		$element.css( {'background-color': color });
 	}
+	this.loadDescription = function(url) {
+		$element.empty();
+		$element.load(url);
+	}
+
 	$element.click(function() {
 		instance.animHide();
 		site.unfocus();
@@ -119,10 +124,12 @@ function Layer(site, snapElement) {
 	var ANIM_DURATION = 1000;
 	var FOCUS_OPACITY = 2.0;
 	var UNFOCUS_OPACITY = 0.25;
+	var FOLDER = 'layers/'
+	var text = snapElement.select('text').attr('text');
 	this.cx;
-	this.cy;
+	this.cy;	
 	this.color = snapElement.select('ellipse').attr('fill');
-	
+
 	function setCenter() {
 		var bbox = snapElement.getBBox();
 		instance.cx = bbox.cx;
@@ -164,7 +171,10 @@ function Layer(site, snapElement) {
 		unhover();
 		unclick();
 	}
-	
+	this.url = function() {
+		return FOLDER + text.toLowerCase() + ".html";
+	}
+
 	setCenter(snapElement);
 	this.activate();
 }

@@ -21,10 +21,10 @@ svg {
 }
 #popup {
 	display: none;
-	top: 5%;
+	top: 0;
 	bottom: 5%;
 	position: absolute;
-	right: 0;
+	right: 5%;
 	width: 25%;
 	background-color: #00CCFF;
 	opacity: 0.75;
@@ -39,24 +39,8 @@ svg {
 	opacity: 0.9;
 }
 
-.slider {
-  position: relative;
-  width: 100%;
-  height: 90%;
-  border-bottom: 1px solid #ddd;
-}
-
-.slide {
-  display: none;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
-.slide p {
-	font-size: 2em;
-}
-
-.active-slide {
-    display: block;
+#popup img {
+	height: 200px;
+	width: 200px;
+	border-radius: 100px;
 }
