@@ -34,14 +34,14 @@
 						<g id="job" class="layer">
 							<g class="content">
 								<text x="50" y="185">Job</text>
-								<ellipse cx="45" cy="247" rx="40" ry="40" fill="#cda2be" stroke="#b5739d" stroke-width="8" />
+								<ellipse cx="45" cy="247" rx="40" ry="40" fill="#ccff99" stroke="#99ff33" stroke-width="8" />
 							</g>
 							
 						</g>			
 						<g id="projects" class="layer">
 							<g class="content">
 								<text x="201" y="325">Projects</text>
-								<ellipse cx="200" cy="397" rx="40" ry="40" fill="#cda2be" stroke="#b5739d" stroke-width="8" />
+								<ellipse cx="200" cy="397" rx="40" ry="40" fill="#ff9999" stroke="#ff6666" stroke-width="8" />
 							</g>
 						</g>
 					</g>
@@ -62,14 +62,14 @@
 						<g id="university" class="layer">
 							<g class="content">
 								<text x="353" y="435">University</text>
-								<ellipse cx="352" cy="499" rx="40" ry="40" fill="#ffe599" stroke="#ffd966" stroke-width="8" />
+								<ellipse cx="352" cy="499" rx="40" ry="40" fill="#ffcc99" stroke="#ffb366" stroke-width="8" />
 							</g>
 							
 						</g>
 						<g id="online" class="layer">
 							<g class="content">
 								<text x="655" y="395">Online</text>
-								<ellipse cx="651" cy="461" rx="40" ry="40" fill="#ffe599" stroke="#ffd966" stroke-width="8" />
+								<ellipse cx="651" cy="461" rx="40" ry="40" fill="#ff99cc" stroke="#ff66b3" stroke-width="8" />
 							</g>
 							
 						</g>
@@ -94,14 +94,14 @@
 						<g id="music" class="layer">
 							<g class="content">
 								<text x="842" y="362">Music</text>
-								<ellipse cx="842" cy="427" rx="40" ry="40" fill="#00ee66" stroke="#00cc66" stroke-width="8" />
+								<ellipse cx="842" cy="427" rx="40" ry="40" fill="#9ac7bf" stroke="#67ab9f" stroke-width="8" />
 							</g>
 								
 						</g>
 						<g id="sport" class="layer">
 							<g class="content">
 								<text x="989" y="210">Sport</text>
-								<ellipse cx="989" cy="281" rx="40" ry="40" fill="#00ee66" stroke="#00cc66" stroke-width="8" />
+								<ellipse cx="989" cy="281" rx="40" ry="40" fill="#99ffff" stroke="#33ffff" stroke-width="8" />
 							</g>
 							
 						</g>
