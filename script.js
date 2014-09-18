@@ -23,10 +23,8 @@ function Site() {
 
 	this.popup = new Popup(this);
 	function setActive(layer) {
-		if (activeLayer) {
+		if (activeLayer)
 			activeLayer.activate();
-			activeLayer.unfocus();
-		}
 		activeLayer = layer;
 		activeLayer.unactivate();
 	}
@@ -49,7 +47,6 @@ function Site() {
 		var snapElements = snapMap.selectAll('.content');
 		snapElements.forEach(function(snapElement) {
 			var layer = new Layer(instance, snapElement);
-			layer.unfocus();
 		});
 	}
 	function animTransform(matrix) {
@@ -140,10 +137,10 @@ function Layer(site, snapElement) {
 		site.popup.animShow();
 	}
 	function hover() {
-		snapElement.hover(instance.focus, instance.unfocus);
+		snapElement.hover(focus, unfocus);
 	}
 	function unhover() {
-		snapElement.unhover(instance.focus, instance.unfocus);
+		snapElement.unhover(focus, unfocus);
 	}
 	function click() {
 		snapElement.click(clickCallback);
@@ -152,15 +149,14 @@ function Layer(site, snapElement) {
 		snapElement.unclick(clickCallback);
 	}
 
-	setCenter(snapElement);
-
-	this.focus = function() {
+	function focus() {
 		animOpacity(FOCUS_OPACITY);
 	}
-	this.unfocus = function() {
+	function unfocus() {
 		animOpacity(UNFOCUS_OPACITY);
 	}
 	this.activate = function() {
+		unfocus();
 		hover();
 		click();
 	}
@@ -168,6 +164,7 @@ function Layer(site, snapElement) {
 		unhover();
 		unclick();
 	}
-
+	
+	setCenter(snapElement);
 	this.activate();
 }
