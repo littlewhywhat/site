@@ -6,39 +6,44 @@ var site = new Site();
 site.init(svgId, mapUrl, rootSelector);
 
 function Site() {
+	var instance = this;
+	var snap;
+	var svg;
+	
 	this.popup = new Popup();
-	this.snap;
 	this.root;
-	this.svg;
 	this.scalePositionX;
 	this.scalePositionY;
 
+	function setViewBox() {
+		var height = parseInt(instance.root.attr('height'));
+		var width = parseInt(instance.root.attr('width'));
+		svg.setAttribute('viewBox', '0 0 ' 
+		+ width + ' ' 
+		+ height + ' ');
+	}
+	function setScalePosition() {
+		var percentX = 0.375;
+		var percentY = 0.5;
+		var height = parseInt(instance.root.attr('height'));
+		var width = parseInt(instance.root.attr('width'));
+		instance.scalePositionX = width * percentX;
+		instance.scalePositionY = height * percentY;
+	}
 	this.init = function(svgId, mapUrl, rootSelector) {
-		this.svg = document.getElementById(svgId);
-		this.snap = Snap(this.svg);
+		svg = document.getElementById(svgId);
+		snap = Snap(svg);
 		Snap.load(mapUrl, function(data) {	
 			this.root = data.select(rootSelector);
-			this.snap.append(this.root);
+			snap.append(this.root);
 
-			this.setViewBox();
-			this.setScalePosition();
+			setViewBox();
+			setScalePosition();
 
 			attachHandlers(this.root.selectAll('.content'));
 		}, this);
 	}
-	this.setViewBox = function() {
-		var bbox = this.root.getBBox();
-		this.svg.setAttribute('viewBox', '0 0 ' 
-		+ bbox.w + ' ' 
-		+ bbox.h + ' ');
-	}
-	this.setScalePosition = function() {
-		var percentX = 0.375;
-		var percentY = 0.5;
-		var bbox = this.root.getBBox();
-		this.scalePositionX = bbox.w * percentX;
-		this.scalePositionY = bbox.h * percentY;
-	}
+	
 }
 
 function Popup() {
@@ -46,25 +51,12 @@ function Popup() {
 	var animDuration = 1000;
 	var id = '#popup';
 	var element = $(id);
-	var way = $(document).height();
-	var hide = function() {
-		element.hide();
-	}
-	element.css({'margin-top': -way});
 	
 	this.animShow = function() {	
-		element.show();	
-		element.animate({
-			top : way},
-			animDuration
-		);
+		element.slideToggle(animDuration);
 	}
 	this.animHide = function() {
-		element.animate({
-			top : -way },
-			animDuration,
-			hide
-		);
+		element.slideToggle(animDuration);
 	}
 
 	element.click(function() {
