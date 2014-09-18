@@ -19,9 +19,17 @@ function Site() {
 	var xFocus;
 	var yFocus;
 	var snapMap;
+	var activeLayer;
 
 	this.popup = new Popup(this);
-
+	function setActive(layer) {
+		if (activeLayer) {
+			activeLayer.hover();
+			activeLayer.unfocus();
+		}
+		activeLayer = layer;
+		activeLayer.unhover();
+	}
 	function setViewBox() {
 		var height = parseInt(snapMap.attr('height'));
 		var width = parseInt(snapMap.attr('width'));
@@ -49,13 +57,17 @@ function Site() {
 			transform: matrix.toTransformString()
 		}, ANIM_DURATION, mina.bounce);
 	}
-	this.focus = function(x,y) {
+	function focus(x,y) {
 		var translateX =  (xFocus - x);
 		var translateY =  (yFocus - y);
 		var matrix = new Snap.Matrix();
 		matrix.translate(translateX, translateY);
 		matrix.scale(FOCUS_SCALE, FOCUS_SCALE, x, y);
 		animTransform(matrix);
+	}
+	this.focus = function(layer) {
+		focus(layer.cx, layer.cy);
+		setActive(layer);
 	}
 	this.unfocus = function() {
 		var matrix = new Snap.Matrix();
@@ -106,12 +118,12 @@ function Layer(site, snapElement) {
 	var ANIM_DURATION = 1000;
 	var FOCUS_OPACITY = 2.0;
 	var UNFOCUS_OPACITY = 0.25;
-	var cx;
-	var cy;
+	this.cx;
+	this.cy;
 	var setCenter = function() {
 		var bbox = snapElement.getBBox();
-		cx = bbox.cx;
-		cy = bbox.cy;
+		instance.cx = bbox.cx;
+		instance.cy = bbox.cy;
 	}
 	var animOpacity = function(opacity) {
 		snapElement.animate({'opacity': opacity}, ANIM_DURATION);
@@ -125,15 +137,17 @@ function Layer(site, snapElement) {
 	this.unfocus = function() {
 		animOpacity(UNFOCUS_OPACITY);
 	}
+	this.hover = function() {
+		snapElement.hover(instance.focus, instance.unfocus);
+	}
+	this.unhover = function() {
+		snapElement.unhover(instance.focus, instance.unfocus);
+	}
 
 	snapElement.click(function(){
-		site.focus(cx,cy);
+		site.focus(instance);
 		site.popup.animShow();
 	});
 	
-	snapElement.hover(function(){
-			instance.focus();
-		}, function() {
-			instance.unfocus();
-	});
+	this.hover();
 }
