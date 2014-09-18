@@ -20,6 +20,7 @@ svg {
 	height: 100%;
 }
 #popup {
+	display: none;
 	top: 5%;
 	bottom: 5%;
 	position: absolute;
