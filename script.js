@@ -27,6 +27,7 @@ function Site() {
 			activeLayer.activate();
 		activeLayer = layer;
 		activeLayer.unactivate();
+		instance.popup.setLayer(layer);
 	}
 	function setViewBox() {
 		var height = parseInt(snapMap.attr('height'));
@@ -63,14 +64,17 @@ function Site() {
 		animTransform(matrix);
 	}
 	this.focus = function(layer) {
-		focus(layer.cx, layer.cy);
-		setActive(layer);
-		instance.popup.setColor(layer.color);
-		instance.popup.loadDescription(layer.url());
+		if (instance.popup.isReady()) {
+			instance.popup.animShow();
+			focus(layer.cx, layer.cy);
+			if (activeLayer !== layer)
+				setActive(layer);
+		}
 	}
 	this.unfocus = function() {
 		var matrix = new Snap.Matrix();
 		animTransform(matrix);
+		activeLayer.click();
 	}
 	this.init = function(svgId, mapUrl, mapSelector) {
 		svgElement = document.getElementById(svgId);
@@ -96,7 +100,16 @@ function Popup(site) {
 	function isOpened() {
 		return $element.is(':visible');
 	}
-
+	function setColor(color) {
+		$element.css( {'background-color': color });
+	}
+	function loadDescription(url) {
+		$element.empty();
+		$element.load(url);
+	}
+	this.isReady = function() {
+		return !$element.is(':animated');
+	}
 	this.animShow = function() {
 		if (!isOpened())
 			$element.slideToggle(ANIM_DURATION);
@@ -105,12 +118,9 @@ function Popup(site) {
 		if (isOpened())
 			$element.slideToggle(ANIM_DURATION);
 	}
-	this.setColor = function(color) {
-		$element.css( {'background-color': color });
-	}
-	this.loadDescription = function(url) {
-		$element.empty();
-		$element.load(url);
+	this.setLayer = function(layer) {
+		setColor(layer.color);
+		loadDescription(layer.url());
 	}
 
 	$element.click(function() {
@@ -141,7 +151,6 @@ function Layer(site, snapElement) {
 	
 	function clickCallback(){
 		site.focus(instance);
-		site.popup.animShow();
 	}
 	function hover() {
 		snapElement.hover(focus, unfocus);
@@ -149,23 +158,22 @@ function Layer(site, snapElement) {
 	function unhover() {
 		snapElement.unhover(focus, unfocus);
 	}
-	function click() {
-		snapElement.click(clickCallback);
-	}
 	function unclick() {
 		snapElement.unclick(clickCallback);
 	}
-
 	function focus() {
 		animOpacity(FOCUS_OPACITY);
 	}
 	function unfocus() {
 		animOpacity(UNFOCUS_OPACITY);
 	}
+	this.click = function() {
+		snapElement.click(clickCallback);
+	}
 	this.activate = function() {
 		unfocus();
 		hover();
-		click();
+		this.click();
 	}
 	this.unactivate = function() {
 		unhover();

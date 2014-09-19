@@ -50,8 +50,8 @@ svg {
 	bottom: 5%;
 	right: 5%;
 	width: 25%;
-	min-width: 30em;
-	opacity: 0.75;
+	min-width: 20em;
+	/*opacity: 0.75;*/
 	padding: 20px;
 	overflow: auto;
 	border-bottom-left-radius: 10px;
