@@ -137,7 +137,7 @@ function Layer(site, snapElement) {
 	var instance = this;
 	var ANIM_DURATION = 1000;
 	var FOCUS_OPACITY = 2.0;
-	var UNFOCUS_OPACITY = 0.5;
+	var UNFOCUS_OPACITY = 0.25;
 	var FOLDER = 'layers/'
 	var text = snapElement.select('text').attr('text');
 	this.cx;
