@@ -62,14 +62,28 @@ svg {
 	text-align: center;
 	font-size: 3em;
 	color: white;
+	margin: 0;
 }
-#popup p {
+#popup div {
 	font-family: 'Comic Sans MS';
 	font-size: 1.5em;
 	text-align: justify;
+	color: white;
 }
 #popup img {
 	height: 200px;
 	width: 200px;
 	border-radius: 100px;
+	float: left;
+	margin: 1em;
+}
+
+#popup a {
+	text-decoration: none;
+	color: white;
+}
+
+#popup a:hover {
+	color: white;
+	text-decoration: underline;
 }
