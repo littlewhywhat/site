@@ -72,11 +72,12 @@ svg {
 	word-wrap: break-word;
 }
 #popup img {
-	height: 200px;
-	width: 200px;
-	border-radius: 100px;
+	height: 5em;
+	width: 5em;
+	border-radius: 2.5em;
 	float: left;
-	margin: 1em;
+	margin-right: 0.5em;
+	margin-bottom: 0.5em;
 }
 
 #popup a {

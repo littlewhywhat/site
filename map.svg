@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1071px" height="545px" version="1.1">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1071px" height="560px" version="1.1">
 	<defs/>
-	<g width="1071px" height="545px" fill="#000000" font-family="Comic Sans MS" font-weight="bold" text-anchor="middle" font-size="36px">
+	<g width="1071px" height="560px" fill="#000000" font-family="Comic Sans MS" font-weight="bold" text-anchor="middle" font-size="36px">
 		<g id="mi" class="layer">
 			<g class="content">
 				<path d="M 343 185 L 398 185 Q 408 185 408 175 L 408 105 Q 408 95 418 95 L 472 95" fill="none" stroke="#0000ff" stroke-width="4" stroke-miterlimit="10" />
@@ -48,15 +48,14 @@
 				</g>
 				<g id="education" class="layer">
 					<g class="content">
-						<ellipse cx="471" cy="313" rx="40" ry="40" fill="#ffe599" stroke="#ffd966" stroke-width="8" />
-						<rect x="260" y="408" width="185" height="40" fill="none" stroke="none" />
-						<path d="M 392 499 L 461 499 Q 471 499 471 489 L 471 354" fill="none" stroke="#ffd966" stroke-width="4" stroke-miterlimit="10" />
-						<path d="M 499 343 L 551 343 Q 561 343 561 353 L 561 451 Q 561 461 571 461 L 611 461" fill="none" stroke="#ffd966" stroke-width="4" stroke-miterlimit="10" />
+						<ellipse cx="471" cy="313" rx="40" ry="40" fill="#ffd966" stroke="#ffc43b" stroke-width="8" />
+						<path d="M 392 499 L 461 499 Q 471 499 471 489 L 471 354" fill="none" stroke="#ffc43b" stroke-width="4" stroke-miterlimit="10" />
+						<path d="M 499 343 L 551 343 Q 561 343 561 353 L 561 451 Q 561 461 571 461 L 611 461" fill="none" stroke="#ffc43b" stroke-width="4" stroke-miterlimit="10" />
 						<text x="472" y="241">Education</text>
 						<text x="353" y="435">University</text>
-						<ellipse cx="352" cy="499" rx="50" ry="50" fill="#ffffff" stroke="#ffd966" stroke-width="8" />
+						<ellipse cx="352" cy="499" rx="50" ry="50" fill="#ffffff" stroke="#ffc43b" stroke-width="8" />
 						<text x="655" y="395">Online</text>
-						<ellipse cx="651" cy="461" rx="50" ry="50" fill="#ffffff" stroke="#ffd966" stroke-width="8" />
+						<ellipse cx="651" cy="461" rx="50" ry="50" fill="#ffffff" stroke="#ffc43b" stroke-width="8" />
 					</g>
 					<g class="children">
 						<g id="university" class="layer">
