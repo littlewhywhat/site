@@ -21,20 +21,20 @@
 					<g class="content">				
 						
 						<ellipse cx="293" cy="185" rx="40" ry="40" fill="#cda2be" stroke="#b5739d" stroke-width="8" />
-						<path d="M 85 247 L 159 247 Q 169 247 169 237 L 169 195 Q 169 185 179 185 L 253 185" fill="none" stroke="#b5739d" stroke-width="4" stroke-miterlimit="10" />
+						<path d="M 100 247 L 159 247 Q 169 247 169 237 L 169 195 Q 169 185 179 185 L 253 185" fill="none" stroke="#b5739d" stroke-width="4" stroke-miterlimit="10" />
 						<path d="M 293 225 L 293 254 Q 293 264 283 264 L 211 264 Q 201 264 201 274 L 201 302" fill="none" stroke="#b5739d" stroke-width="4" stroke-miterlimit="10" />
 						<path d="M 201 340 L 201 345 Q 201 350 200 354 L 200 357" fill="none" stroke="#b5739d" stroke-width="4" stroke-miterlimit="10" />
 						<text x="276" y="119">Experience</text>
-						<text x="50" y="185">Job</text>
-						<ellipse cx="45" cy="247" rx="50" ry="50" fill="#ffffff" stroke="#b5739d" stroke-width="8" />
+						<text x="65" y="185">Job</text>
+						<ellipse cx="60" cy="247" rx="50" ry="50" fill="#ffffff" stroke="#b5739d" stroke-width="8" />
 						<text x="201" y="325">Projects</text>
 						<ellipse cx="200" cy="397" rx="50" ry="50" fill="#ffffff" stroke="#b5739d" stroke-width="8" />
 					</g>
 					<g class="children">
 						<g id="job" class="layer">
 							<g class="content">
-								<text x="50" y="185">Job</text>
-								<ellipse cx="45" cy="247" rx="40" ry="40" fill="#ccff99" stroke="#99ff33" stroke-width="8" />
+								<text x="65" y="185">Job</text>
+								<ellipse cx="60" cy="247" rx="40" ry="40" fill="#ccff99" stroke="#99ff33" stroke-width="8" />
 							</g>
 							
 						</g>			
