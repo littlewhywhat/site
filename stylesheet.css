@@ -2,11 +2,10 @@
     width: 12px;  
 }  
 ::-webkit-scrollbar-track {  
-    background-color: #eaeaea;  
-    border-left: 1px solid #ccc;  
+    background-color: #eaeaea;
 }  
 ::-webkit-scrollbar-thumb { 
-    background-color: #ccc;  
+    background-color: #ccc; 
 }  
 ::-webkit-scrollbar-thumb:hover {  
     background-color: #aaa;  
@@ -51,11 +50,12 @@ svg {
 	right: 5%;
 	width: 25%;
 	min-width: 20em;
-	/*opacity: 0.75;*/
 	padding: 20px;
 	overflow: auto;
-	border-bottom-left-radius: 10px;
-	border-bottom-right-radius: 10px;
+	border-bottom: 1px solid;
+	border-left: 1px solid;
+	border-right: 1px solid;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 #popup h1 {
 	font-family: 'Comic Sans MS';

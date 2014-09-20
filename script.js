@@ -103,6 +103,9 @@ function Popup(site) {
 	function setColor(color) {
 		$element.css( {'background-color': color });
 	}
+	function setBorderColor(color) {
+		$element.css( {'border-color': color });
+	}
 	function loadDescription(url) {
 		$element.empty();
 		$element.load(url);
@@ -120,6 +123,7 @@ function Popup(site) {
 	}
 	this.setLayer = function(layer) {
 		setColor(layer.color);
+		setBorderColor(layer.borderColor);
 		loadDescription(layer.url());
 	}
 
@@ -139,6 +143,7 @@ function Layer(site, snapElement) {
 	this.cx;
 	this.cy;	
 	this.color = snapElement.select('ellipse').attr('fill');
+	this.borderColor = snapElement.select('ellipse').attr('stroke');
 
 	function setCenter() {
 		var bbox = snapElement.getBBox();
