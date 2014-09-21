@@ -98,6 +98,7 @@ function Popup(site) {
 	var instance = this;
 	var ANIM_DURATION = 1000;
 	var $element = $('#popup');
+	var changer = new Changer($element, 'bottom', '%', 10, 'mousemove');
 	
 	function isOpened() {
 		return $element.is(':visible');
@@ -110,6 +111,10 @@ function Popup(site) {
 	}
 	function loadDescription(name) {
 		$element.html(site.loadManager.get(name));
+	}
+	this.close = function() {
+		instance.animHide();
+		site.unfocus();
 	}
 	this.isReady = function() {
 		return !$element.is(':animated');
@@ -128,11 +133,53 @@ function Popup(site) {
 		loadDescription(layer.name);
 	}
 
-	$element.click(function() {
-		instance.animHide();
-		site.unfocus();
+	$element.mousedown(function(event) {
+		var startValue = event.pageY;
+		changer.handleChange( 
+		function(event) {
+			return event.pageY - startValue;
+		}, function(change) {
+			return change > 0 && change <= 30;
+		}, function(change) {
+			return change > 30;
+		}, instance.close);
 	});
+	$element.mouseup(function(event) {
+		changer.stop();
+	});
+
+	$element.on('swipeleft', close);
 }
+
+function Changer($element, attrName, measure, speed, eventName) {
+	var instance = this;
+	var initValue = $element.css(attrName);
+	function changeElement(change) {		
+		$element.css(attrName, (parseInt(initValue) - change/speed) + measure);		
+	}
+	function recoverElement() {
+		$element.css(attrName, initValue);
+	}
+	this.handleChange = function(getEventValue, changeCondition, stopCondition, stopCallback) {
+		
+		$element.bind(eventName, function(event) {
+			var change = getEventValue(event);
+			console.log(change);
+			if (changeCondition(change))
+				changeElement(change);
+			else if (stopCondition(change)) {
+				instance.stop();
+				stopCallback();
+			}
+		});
+	}
+
+	this.stop = function() {
+		$element.unbind(eventName);
+		recoverElement();
+	}
+}	
+
 
 function Layer(site, snapElement) {
 	var instance = this;
@@ -206,7 +253,6 @@ function LoadManager() {
 				url: FOLDER + filename + html,
 				success: function(data) {
 					cash[filename] = data;
-					console.log(cash);
 				}
 			});
 		});
