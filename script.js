@@ -99,7 +99,7 @@ function Popup(site) {
 	var ANIM_DURATION = 1000;
 	var $element = $('#popup');
 	var changer = new Changer($element, 'bottom', '%', 10, 'mousemove');
-	
+
 	function isOpened() {
 		return $element.is(':visible');
 	}
@@ -148,7 +148,9 @@ function Popup(site) {
 		changer.stop();
 	});
 
-	$element.on('swipeleft', close);
+	$element.on('swipeleft', function() {
+		instance.close();
+	});
 }
 
 function Changer($element, attrName, measure, speed, eventName) {
