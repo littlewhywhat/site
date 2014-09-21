@@ -22,6 +22,7 @@ function Site() {
 	var activeLayer;
 
 	this.popup = new Popup(this);
+	this.loadManager = new LoadManager();
 	function setActive(layer) {
 		if (activeLayer)
 			activeLayer.activate();
@@ -88,6 +89,7 @@ function Site() {
 
 			createLayers();
 		});
+		this.loadManager.load();
 	}
 	
 }
@@ -106,9 +108,8 @@ function Popup(site) {
 	function setBorderColor(color) {
 		$element.css( {'border-color': color });
 	}
-	function loadDescription(url) {
-		$element.empty();
-		$element.load(url);
+	function loadDescription(name) {
+		$element.html(site.loadManager.get(name));
 	}
 	this.isReady = function() {
 		return !$element.is(':animated');
@@ -124,7 +125,7 @@ function Popup(site) {
 	this.setLayer = function(layer) {
 		setColor(layer.color);
 		setBorderColor(layer.borderColor);
-		loadDescription(layer.url());
+		loadDescription(layer.name);
 	}
 
 	$element.click(function() {
@@ -138,8 +139,7 @@ function Layer(site, snapElement) {
 	var ANIM_DURATION = 1000;
 	var FOCUS_OPACITY = 2.0;
 	var UNFOCUS_OPACITY = 0.25;
-	var FOLDER = 'layers/'
-	var text = snapElement.select('text').attr('text');
+	this.name = snapElement.select('text').attr('text').toLowerCase();
 	this.cx;
 	this.cy;	
 	this.color = snapElement.select('ellipse').attr('fill');
@@ -184,10 +184,32 @@ function Layer(site, snapElement) {
 		unhover();
 		unclick();
 	}
-	this.url = function() {
-		return FOLDER + text.toLowerCase() + ".html";
-	}
 
 	setCenter(snapElement);
 	this.activate();
+}
+
+function LoadManager() {
+	var html = ".html"
+	var FILENAMES = ['me', 'sport', 'education', 'experience',
+				 		'interests', 'job', 'music', 'online', 
+				 		'projects', 'university'];
+	var cash = new Array();
+	var FOLDER = 'layers/';
+	this.get = function(name) {
+		return cash[name];
+	}
+	this.load = function() {
+		FILENAMES.forEach(function(filename) {
+			$.ajax({
+				type: 'GET',
+				url: FOLDER + filename + html,
+				success: function(data) {
+					cash[filename] = data;
+					console.log(cash);
+				}
+			});
+		});
+		
+	}
 }
