@@ -1,3 +1,7 @@
+$( document ).on( "mobileinit", function() {
+  $.mobile.loader.prototype.options.text = "";
+});
+
 $(document).ready(new Main().main);
 
 function Main() {
