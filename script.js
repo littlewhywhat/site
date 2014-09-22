@@ -102,7 +102,9 @@ function Popup(site) {
 	var instance = this;
 	var ANIM_DURATION = 1000;
 	var $element = $('#popup');
-	var changer = new Changer($element, 'bottom', '%', 10, 'mousemove');
+	var $content = $element.find('.content');
+	var $footer = $element.find('.footer');
+	var changer = new Changer($element, 'bottom', '%', 5, 'mousemove');
 
 	function isOpened() {
 		return $element.is(':visible');
@@ -114,7 +116,7 @@ function Popup(site) {
 		$element.css( {'border-color': color });
 	}
 	function loadDescription(name) {
-		$element.html(site.loadManager.get(name));
+		$content.html(site.loadManager.get(name));
 	}
 	this.close = function() {
 		instance.animHide();
@@ -137,23 +139,31 @@ function Popup(site) {
 		loadDescription(layer.name);
 	}
 
-	$element.mousedown(function(event) {
+	$footer.mousedown(function(event) {
 		var startValue = event.pageY;
 		changer.handleChange( 
 		function(event) {
 			return event.pageY - startValue;
 		}, function(change) {
-			return change > 0 && change <= 30;
+			return change > 0 && change <= 10;
 		}, function(change) {
-			return change > 30;
+			return change > 10;
 		}, instance.close);
+		$footer.mouseout(function(event) {
+			$footer.unbind('mouseout');
+			$footer.unbind('mouseup');
+			changer.stop();
+		});
+		$footer.mouseup(function(event) {
+			$footer.unbind('mouseout');
+			$footer.unbind('mouseup');
+			changer.stop();
+		});
 	});
-	$element.mouseup(function(event) {
-		changer.stop();
-	});
+	
 
-	$element.on('swipeleft', function() {
-		instance.close();
+	$footer.on('swipeleft', function() {
+	 	instance.close();
 	});
 }
 
@@ -166,11 +176,10 @@ function Changer($element, attrName, measure, speed, eventName) {
 	function recoverElement() {
 		$element.css(attrName, initValue);
 	}
-	this.handleChange = function(getEventValue, changeCondition, stopCondition, stopCallback) {
+	this.handleChange = function(getChange, changeCondition, stopCondition, stopCallback) {
 		
 		$element.bind(eventName, function(event) {
-			var change = getEventValue(event);
-			console.log(change);
+			var change = getChange(event);
 			if (changeCondition(change))
 				changeElement(change);
 			else if (stopCondition(change)) {
