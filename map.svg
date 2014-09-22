@@ -34,7 +34,7 @@
 						<g id="job" class="layer">
 							<g class="content">
 								<text x="65" y="185">Job</text>
-								<ellipse cx="60" cy="247" rx="40" ry="40" fill="#ccff99" stroke="#99ff33" stroke-width="8" />
+								<ellipse cx="60" cy="247" rx="40" ry="40" fill="#88de26" stroke="#7bc923" stroke-width="8" />
 							</g>
 							
 						</g>			
@@ -48,27 +48,28 @@
 				</g>
 				<g id="education" class="layer">
 					<g class="content">
-						<ellipse cx="471" cy="313" rx="40" ry="40" fill="#ffd966" stroke="#ffc43b" stroke-width="8" />
-						<path d="M 392 499 L 461 499 Q 471 499 471 489 L 471 354" fill="none" stroke="#ffc43b" stroke-width="4" stroke-miterlimit="10" />
-						<path d="M 499 343 L 551 343 Q 561 343 561 353 L 561 451 Q 561 461 571 461 L 611 461" fill="none" stroke="#ffc43b" stroke-width="4" stroke-miterlimit="10" />
+						<ellipse cx="471" cy="313" rx="40" ry="40" fill="#f2ce24" stroke="#ebbe2a" stroke-width="8" />
+						<path d="M 392 499 L 461 499 Q 471 499 471 489 L 471 354" fill="none" stroke="#ebbe2a" stroke-width="4" stroke-miterlimit="10" />
+						<path d="M 499 343 L 551 343 Q 561 343 561 353 L 561 451 Q 561 461 571 461 L 611 461" fill="none" stroke="#ebbe2a" stroke-width="4" stroke-miterlimit="10" />
 						<text x="472" y="241">Education</text>
 						<text x="353" y="435">University</text>
-						<ellipse cx="352" cy="499" rx="50" ry="50" fill="#ffffff" stroke="#ffc43b" stroke-width="8" />
+						<ellipse cx="352" cy="499" rx="50" ry="50" fill="#ffffff" stroke="#ebbe2a" stroke-width="8" />
 						<text x="655" y="395">Online</text>
-						<ellipse cx="651" cy="461" rx="50" ry="50" fill="#ffffff" stroke="#ffc43b" stroke-width="8" />
+						<ellipse cx="651" cy="461" rx="50" ry="50" fill="#ffffff" stroke="#ebbe2a" stroke-width="8" />
 					</g>
 					<g class="children">
 						<g id="university" class="layer">
 							<g class="content">
 								<text x="353" y="435">University</text>
-								<ellipse cx="352" cy="499" rx="40" ry="40" fill="#ffcc99" stroke="#ffb366" stroke-width="8" />
+								<ellipse cx="352" cy="499" rx="40" ry="40" fill="#d6b656" stroke="#ba9e4b" stroke-width="8" />
 							</g>
 							
 						</g>
 						<g id="online" class="layer">
 							<g class="content">
 								<text x="655" y="395">Online</text>
-								<ellipse cx="651" cy="461" rx="40" ry="40" fill="#ff99cc" stroke="#ff66b3" stroke-width="8" />
+								<ellipse cx="651" cy="461" rx="40" ry="40" fill="#9ac7bf" stroke="#67ab9f" stroke-width="8" />
+								
 							</g>
 							
 						</g>
@@ -93,14 +94,15 @@
 						<g id="music" class="layer">
 							<g class="content">
 								<text x="842" y="362">Music</text>
-								<ellipse cx="842" cy="427" rx="40" ry="40" fill="#9ac7bf" stroke="#67ab9f" stroke-width="8" />
+								<ellipse cx="842" cy="427" rx="40" ry="40" fill="#ff99cc" stroke="#ff66b3" stroke-width="8" />
+								
 							</g>
 								
 						</g>
 						<g id="sport" class="layer">
 							<g class="content">
 								<text x="989" y="210">Sport</text>
-								<ellipse cx="989" cy="281" rx="40" ry="40" fill="#99ffff" stroke="#33ffff" stroke-width="8" />
+								<ellipse cx="989" cy="281" rx="40" ry="40" fill="#88e3e3" stroke="#7dd1d1" stroke-width="8" />
 							</g>
 							
 						</g>
