@@ -104,7 +104,22 @@ function Popup(site) {
 	var $element = $('#popup');
 	var $content = $element.find('.content');
 	var $footer = $element.find('.footer');
-	var changer = new Changer($element, 'bottom', '%', 5, 'mousemove');
+	var eventsTracker = new EventsTracker($footer, 
+		['mousedown'], 
+		['mouseup', 'mouseout']);
+	var initBottom = parseInt($element.css('bottom'));
+
+	function reduceBottomOn(change) {
+		setBottom(initBottom - change);
+	}
+
+	function recoverBottom() {
+		setBottom(initBottom);
+	}
+
+	function setBottom(value) {
+		$element.css('bottom', value + '%');
+	}
 
 	function isOpened() {
 		return $element.is(':visible');
@@ -118,10 +133,11 @@ function Popup(site) {
 	function loadDescription(name) {
 		$content.html(site.loadManager.get(name));
 	}
-	this.close = function() {
+	function close() {
 		instance.animHide();
 		site.unfocus();
 	}
+	
 	this.isReady = function() {
 		return !$element.is(':animated');
 	}
@@ -138,63 +154,29 @@ function Popup(site) {
 		setBorderColor(layer.borderColor);
 		loadDescription(layer.name);
 	}
-
-	$footer.mousedown(function(event) {
-		var startValue = event.pageY;
-		changer.handleChange( 
-		function(event) {
-			return event.pageY - startValue;
-		}, function(change) {
-			return change > 0 && change <= 10;
-		}, function(change) {
-			return change > 10;
-		}, instance.close);
-		$footer.mouseout(function(event) {
-			$footer.unbind('mouseout');
-			$footer.unbind('mouseup');
-			changer.stop();
-		});
-		$footer.mouseup(function(event) {
-			$footer.unbind('mouseout');
-			$footer.unbind('mouseup');
-			changer.stop();
-		});
-	});
 	
+	eventsTracker.onStart(function(event) {		
+		var startValue = event.pageY;
+		eventsTracker.on('mousemove', function(event) {
+			var change = event.pageY - startValue;
+			if (change > 0)
+				if (change <= 10) {
+					reduceBottomOn(change/5);
+				}
+				else {
+					eventsTracker.stop();
+					close();
+				}	
+		})
+	});
+	eventsTracker.onStop(function() {
+		recoverBottom();
+	});
 
 	$footer.on('swipeleft', function() {
-	 	instance.close();
+		close();
 	});
 }
-
-function Changer($element, attrName, measure, speed, eventName) {
-	var instance = this;
-	var initValue = $element.css(attrName);
-	function changeElement(change) {		
-		$element.css(attrName, (parseInt(initValue) - change/speed) + measure);		
-	}
-	function recoverElement() {
-		$element.css(attrName, initValue);
-	}
-	this.handleChange = function(getChange, changeCondition, stopCondition, stopCallback) {
-		
-		$element.bind(eventName, function(event) {
-			var change = getChange(event);
-			if (changeCondition(change))
-				changeElement(change);
-			else if (stopCondition(change)) {
-				instance.stop();
-				stopCallback();
-			}
-		});
-	}
-
-	this.stop = function() {
-		$element.unbind(eventName);
-		recoverElement();
-	}
-}	
-
 
 function Layer(site, snapElement) {
 	var instance = this;
