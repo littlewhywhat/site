@@ -157,11 +157,11 @@ function Popup(site) {
 		return !$element.is(':animated');
 	}
 	this.animShow = function() {
-		if (!isOpened())
+		if (!isOpened() && instance.isReady())
 			$element.slideToggle(ANIM_DURATION);
 	}
 	this.animHide = function() {
-		if (isOpened())
+		if (isOpened() && instance.isReady())
 			$element.slideToggle(ANIM_DURATION);
 	}
 	this.setLayer = function(layer) {
