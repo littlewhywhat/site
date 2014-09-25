@@ -3075,9 +3075,10 @@ Snap.parse = function (svg) {
             while (svg.firstChild) {
                 f.appendChild(svg.firstChild);
             }
+            div.innerHTML = E;
         }
     }
-    div.innerHTML = E;
+   
     return new Fragment(f);
 };
 function Fragment(frag) {
