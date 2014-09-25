@@ -33,6 +33,9 @@
 // ├────────────────────────────────────────────────────────────┤ \\
 // │ Author Dmitry Baranovskiy (http://dmitry.baranovskiy.com/) │ \\
 // └────────────────────────────────────────────────────────────┘ \\
+//
+// NOTICE: changed to fix bug according to https://github.com/adobe-webplatform/Snap.svg/commit/28b7a7a753866c15b1a8eecdb2fee4d002823a6f
+//
 
 (function (glob) {
     var version = "0.4.2",
