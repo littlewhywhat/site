@@ -253,10 +253,10 @@ function LoadManager() {
 	var FILENAMES = ['me', 'sport', 'education', 'experience',
 				 		'interests', 'job', 'music', 'online', 
 				 		'projects', 'university'];
-	var cash = new Array();
+	var cache = new Array();
 	var FOLDER = 'layers/';
 	this.get = function(name) {
-		return cash[name];
+		return cache[name];
 	}
 	this.load = function() {
 		FILENAMES.forEach(function(filename) {
@@ -264,7 +264,7 @@ function LoadManager() {
 				type: 'GET',
 				url: FOLDER + filename + html,
 				success: function(data) {
-					cash[filename] = data;
+					cache[filename] = data;
 				}
 			});
 		});
