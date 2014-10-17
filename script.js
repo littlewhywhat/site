@@ -20,12 +20,28 @@ $( document ).on( "mobileinit", function() {
 $(document).ready(new Main().main);
 
 function Main() {
+	var check = function(callback) {		
+		if(isMobile()) {
+			var head = document.getElementsByTagName('body')[0];
+			var script = document.createElement('script');
+			script.type = 'text/javascript';
+			script.src = 'dist/jquery.mobile-1.4.4.min.js';
+			head.appendChild(script);
+			setTimeout(callback, 100);
+		} else
+			callback();
+	}
+	var isMobile = function() {
+		return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+	}
 	this.main = function() {
-		var svgId = "main";
-		var mapSelector = "g";
-		var mapUrl = "map.svg";
-		var site = new Site();
-		site.init(svgId, mapUrl, mapSelector);
+		check(function() {
+    		var svgId = "main";
+			var mapSelector = "g";
+			var mapUrl = "map.svg";
+			var site = new Site();
+			site.init(svgId, mapUrl, mapSelector);
+		});
 	}
 }
 
